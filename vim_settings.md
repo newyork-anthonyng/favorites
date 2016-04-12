@@ -19,7 +19,5 @@ set list listchars=tab:>-,trail:•,precedes:<,extends:>
 nnoremap <up> :vertical resize +5<cr>
 nnoremap <down> :vertical resize -5<cr>
 
-c> " remap 'noremacape key
-
 " run ctrlP fuzzy search
 set runtimepath^=~/.vim/bundle/ctrlp.vim
