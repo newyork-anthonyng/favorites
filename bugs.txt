@@ -10,3 +10,14 @@ Lessons:
 Credit to Henrik Warne's Blog
 https://henrikwarne.com/2016/04/28/learning-from-your-bugs
 
+Date: April 30, 2016
+
+Symptom: Unable to upload a file into AWS. An error was getting returned, saying that there was no 'PUT' method on the '/' route.
+
+Cause: There was no information being returned from getting a signedRequest for S3. The uploadFile method was using an undefined URL to upload its file, using a 'PUT' method. Because there was no URL, it was hitting the '/' route as a default.
+
+How found: There was a console.log error that there was no 'PUT' method on the '/' route. This console log was from the jquery.js file.
+
+Fix: I needed to add all of the AWS keys onto Heroku.
+
+Lessons: Add descriptive console.log messages when in development! This would have saved me a lot of time and frustration. Also when submitting to Heroku, remember what other things you have to do. There were times when I left the server as listening to a generic port (3000 or 8000), when I should've added 'process.env.PORT' in there as well.
