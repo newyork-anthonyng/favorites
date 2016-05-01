@@ -21,3 +21,17 @@ How found: There was a console.log error that there was no 'PUT' method on the '
 Fix: I needed to add all of the AWS keys onto Heroku.
 
 Lessons: Add descriptive console.log messages when in development! This would have saved me a lot of time and frustration. Also when submitting to Heroku, remember what other things you have to do. There were times when I left the server as listening to a generic port (3000 or 8000), when I should've added 'process.env.PORT' in there as well.
+
+**********
+
+Date: April 30, 2016
+
+Symptom: Frontend code was running on Desktop, but not on mobile.
+
+Cause: Strict mode doesn't work on mobile.
+
+How found: I was running front end code that had 'use strict' in it. The code didn't run on mobile.
+
+Fix: I removed the 'use strict' from the front end code.
+
+Lessons: Do not use strict mode in front end code.
