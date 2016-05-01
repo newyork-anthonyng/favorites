@@ -1,4 +1,4 @@
---Template--
+-Template--
 
 Date:
 Symptom:
@@ -30,7 +30,7 @@ Symptom: Frontend code was running on Desktop, but not on mobile.
 
 Cause: Strict mode doesn't work on mobile.
 
-How found: I was running front end code that had 'use strict' in it. The code didn't run on mobile.
+How found: I was running front end code that had 'use strict' in it. The code didn't run on Safari in general.
 
 Fix: I removed the 'use strict' from the front end code.
 
