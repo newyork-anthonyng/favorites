@@ -35,3 +35,17 @@ How found: I was running front end code that had 'use strict' in it. The code di
 Fix: I removed the 'use strict' from the front end code.
 
 Lessons: Do not use strict mode in front end code.
+
+***********
+
+Date: May 6, 2016
+
+Symptom: A ui-view from ui-router wasn't getting loaded.
+
+Cause: ng-app wasn't set inside of HTML or body.
+
+How found: I had put ng-app inside of a div, and then had the ui-view outside of it. This angular app was rather small, so it only took 5 minutes to figure out what the problem was.
+
+Fix: Include ng-app inside of the body.
+
+Lessons: If I'm goign to be putting ng-app into a scope of a div, and not the entire HTML or body, then be wary! When angular code isn't running, start from step one and see if ng-app is even getting included.
