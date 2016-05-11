@@ -49,3 +49,17 @@ How found: I had put ng-app inside of a div, and then had the ui-view outside of
 Fix: Include ng-app inside of the body.
 
 Lessons: If I'm goign to be putting ng-app into a scope of a div, and not the entire HTML or body, then be wary! When angular code isn't running, start from step one and see if ng-app is even getting included.
+
+***********
+
+Date: May 11, 2016
+
+Symptom: Input[type="file"] wouldn't open on $('input').click();
+
+Cause: Browsers need a click or keypress to activate an Input[type="file"], for security concerns.
+
+How found: This was found when experimenting with keyboard shortcuts, and trying to activate a click event on an Input[type="file"]. When attaching other click event listeners to the Input[type="file"], they would all fire. But the file dialog box never opened. It only opened when I physically clicked on the button.
+
+Fix: There was no fix. Luckily, I was getting a keyboard shortcut to generate the $('input').click() method, so that the Input[type="file"] was properly receiving the click event.
+
+Lessons: When testing browser stuff, start with the simplest version of what you're looking at. I wasted too much time by getting too complicated and making assumptions. After I found out what the problem was, a simple google search brought me to the issue about the security.
