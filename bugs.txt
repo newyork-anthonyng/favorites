@@ -63,3 +63,19 @@ How found: This was found when experimenting with keyboard shortcuts, and trying
 Fix: There was no fix. Luckily, I was getting a keyboard shortcut to generate the $('input').click() method, so that the Input[type="file"] was properly receiving the click event.
 
 Lessons: When testing browser stuff, start with the simplest version of what you're looking at. I wasted too much time by getting too complicated and making assumptions. After I found out what the problem was, a simple google search brought me to the issue about the security.
+
+**********
+
+Date: May 12, 2016
+
+Symptom: An if-statement wasn't getting entered into, even though the condition should have been true.
+
+Cause: The innerText property of an html node includes whitespace, and messes up == and === string comparison.
+
+How found: I had a condition inside if-statement that checked if a type was not undefined, and if its text was equal to "Bookmarks".
+if(typeof $nextForm !== undefined && $nextForm.innerText === 'Bookmarks')
+The .innerText property included white space inside the string, and I didn't notice it in the console.logs.
+
+Fix: Use textContent, or $().text().
+
+Lessons: There are differences between innerText, textContent, and html. Be careful.
