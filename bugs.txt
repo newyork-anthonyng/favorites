@@ -79,3 +79,26 @@ The .innerText property included white space inside the string, and I didn't not
 Fix: Use textContent, or $().text().
 
 Lessons: There are differences between innerText, textContent, and html. Be careful.
+
+**********
+
+Date: June 1, 2016
+
+Symptom: Couldn't test the success method chained from a $http response.
+
+Cause: $http wasn't meant to be tested with a success method. You either have to let your $http run as usual (set up $httpBackend and flush all requests), or set up a fully mocked up promise (with it's own success method).
+
+How found: Karma tests were failing.
+
+Fix: I had my service return a mocked promise, which had its own success method.
+var expectedResponse = 'Expected response from $http';
+
+_mockService = {
+	success: function(fn) {
+		fn(expectedResponse);
+	}
+};
+
+Lessons: By using a callback inside of the _mockService.success, we are able to carry on as usual.
+
+http://stackoverflow.com/questions/23731637/test-a-controller-with-success-and-error
