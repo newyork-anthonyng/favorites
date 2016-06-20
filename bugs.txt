@@ -102,3 +102,17 @@ _mockService = {
 Lessons: By using a callback inside of the _mockService.success, we are able to carry on as usual.
 
 http://stackoverflow.com/questions/23731637/test-a-controller-with-success-and-error
+
+**********
+
+Date: June 20, 2016
+
+Symptom: Jasmine test couldn't find a variable that I had declared inside a describe block.
+
+Cause: I had accidentally written my "it" statements outside of the "describe" block, where I had declared my "stubForm" variable.
+
+How found: The karma output showed an error that my "stubForm" variable didn't exist, even though it worked for the "it" blocks before it.
+
+Fix: I moved the "it" statements inside of the "describe" block.
+
+Lessons: I thought there was an error with the "it" statements, in that the variables declared inside a "describe" block were only available to the first handful of "it" blocks. This makes no sense though! The simple answer is that I just typed my statements incorrectly. Look for simple solutions before jumping to something complicated.
