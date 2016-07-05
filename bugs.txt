@@ -1,4 +1,4 @@
--Template--
+--Template--
 
 Date:
 Symptom:
@@ -116,3 +116,18 @@ How found: The karma output showed an error that my "stubForm" variable didn't e
 Fix: I moved the "it" statements inside of the "describe" block.
 
 Lessons: I thought there was an error with the "it" statements, in that the variables declared inside a "describe" block were only available to the first handful of "it" blocks. This makes no sense though! The simple answer is that I just typed my statements incorrectly. Look for simple solutions before jumping to something complicated.
+
+***********
+
+Date: July 5, 2016
+
+Symptom: $.ajax request was not being sent out.
+
+Cause: I was getting a "parserror" on my ajax request.
+
+How found: My "success" callback inside my $.ajax was not getting called back. At first, I thought my $.ajax was not even being sent.
+I did a sanity check and used the "error" and "complete" callbacks and found that my $.ajax was returning a "parseerror."
+
+Fix: I had my "dataType" option inside of $.ajax as "json." This was causing the "parseerror" inside my ajax call, because it was expecting a JSON object but got something else. When I ran this API call inside of Postman, it looked like a JSON object to me, but there was probably a missing quotation or something to make it a malformed JSON object. By removing the "dataType" option, the $.ajax functioned as normal.
+
+Lessons: Use the "error" and "complete" callbackcs for $.ajax as debugging tools.
