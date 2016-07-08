@@ -131,3 +131,17 @@ I did a sanity check and used the "error" and "complete" callbacks and found tha
 Fix: I had my "dataType" option inside of $.ajax as "json." This was causing the "parseerror" inside my ajax call, because it was expecting a JSON object but got something else. When I ran this API call inside of Postman, it looked like a JSON object to me, but there was probably a missing quotation or something to make it a malformed JSON object. By removing the "dataType" option, the $.ajax functioned as normal.
 
 Lessons: Use the "error" and "complete" callbackcs for $.ajax as debugging tools.
+
+**********
+
+Date: July 8, 2016
+
+Symptom: One of my React component's states was not getting synchronized. 2 DOM elements were shown differently as if the state wasn't consistent.
+
+Cause: I thought that this.setState() was synchronous. However after reading through StackOverflow and the documentation, there is no guarantees that this.setState() will change the state immediately. You can pass a callback as the second argument to it and have code run async once the state has been updated.
+
+How found: Looking at the DOM showed that the state was inconsistent.
+
+Fix: Add a callback as the second argument to this.setState().
+
+Lessons: this.setState() does not guarantee that your state will change right away. The state changes are placed on a queue.
