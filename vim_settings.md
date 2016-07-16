@@ -8,7 +8,7 @@ set wildmenu	" visual autocomplete for command menu
 
 " Show invisible characters
 set list
-set list listchars=tab:>-,trail:•,precedes:<,extends:>
+set list listchars=tab:>-,trail:~,precedes:<,extends:>
 
 " Copy to system clipboard
 set clipboard=unnamed
