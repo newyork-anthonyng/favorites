@@ -22,6 +22,8 @@ set clipboard=unnamed
 
 " remap escape to jj
 inoremap jj <esc>
+" disable autoindent for the current file by pressing F8
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
 
 " remap up and down arrows to resize vertically split windows
 nnoremap <up> :vertical resize -5<cr>
