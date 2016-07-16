@@ -5,6 +5,8 @@ set number	" show line numbers
 set showcmd	" show command in bottom bar
 set cursorline	" highlight current line
 set wildmenu	" visual autocomplete for command menu
+set hlsearch	" highlight search text
+set autoindent	" autoindent lines
 
 " Show invisible characters
 set list

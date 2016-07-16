@@ -1,4 +1,4 @@
--Template--
+--Template--
 
 Date:
 Symptom:
@@ -35,3 +35,113 @@ How found: I was running front end code that had 'use strict' in it. The code di
 Fix: I removed the 'use strict' from the front end code.
 
 Lessons: Do not use strict mode in front end code.
+
+***********
+
+Date: May 6, 2016
+
+Symptom: A ui-view from ui-router wasn't getting loaded.
+
+Cause: ng-app wasn't set inside of HTML or body.
+
+How found: I had put ng-app inside of a div, and then had the ui-view outside of it. This angular app was rather small, so it only took 5 minutes to figure out what the problem was.
+
+Fix: Include ng-app inside of the body.
+
+Lessons: If I'm goign to be putting ng-app into a scope of a div, and not the entire HTML or body, then be wary! When angular code isn't running, start from step one and see if ng-app is even getting included.
+
+***********
+
+Date: May 11, 2016
+
+Symptom: Input[type="file"] wouldn't open on $('input').click();
+
+Cause: Browsers need a click or keypress to activate an Input[type="file"], for security concerns.
+
+How found: This was found when experimenting with keyboard shortcuts, and trying to activate a click event on an Input[type="file"]. When attaching other click event listeners to the Input[type="file"], they would all fire. But the file dialog box never opened. It only opened when I physically clicked on the button.
+
+Fix: There was no fix. Luckily, I was getting a keyboard shortcut to generate the $('input').click() method, so that the Input[type="file"] was properly receiving the click event.
+
+Lessons: When testing browser stuff, start with the simplest version of what you're looking at. I wasted too much time by getting too complicated and making assumptions. After I found out what the problem was, a simple google search brought me to the issue about the security.
+
+**********
+
+Date: May 12, 2016
+
+Symptom: An if-statement wasn't getting entered into, even though the condition should have been true.
+
+Cause: The innerText property of an html node includes whitespace, and messes up == and === string comparison.
+
+How found: I had a condition inside if-statement that checked if a type was not undefined, and if its text was equal to "Bookmarks".
+if(typeof $nextForm !== undefined && $nextForm.innerText === 'Bookmarks')
+The .innerText property included white space inside the string, and I didn't notice it in the console.logs.
+
+Fix: Use textContent, or $().text().
+
+Lessons: There are differences between innerText, textContent, and html. Be careful.
+
+**********
+
+Date: June 1, 2016
+
+Symptom: Couldn't test the success method chained from a $http response.
+
+Cause: $http wasn't meant to be tested with a success method. You either have to let your $http run as usual (set up $httpBackend and flush all requests), or set up a fully mocked up promise (with it's own success method).
+
+How found: Karma tests were failing.
+
+Fix: I had my service return a mocked promise, which had its own success method.
+var expectedResponse = 'Expected response from $http';
+
+_mockService = {
+	success: function(fn) {
+		fn(expectedResponse);
+	}
+};
+
+Lessons: By using a callback inside of the _mockService.success, we are able to carry on as usual.
+
+http://stackoverflow.com/questions/23731637/test-a-controller-with-success-and-error
+
+**********
+
+Date: June 20, 2016
+
+Symptom: Jasmine test couldn't find a variable that I had declared inside a describe block.
+
+Cause: I had accidentally written my "it" statements outside of the "describe" block, where I had declared my "stubForm" variable.
+
+How found: The karma output showed an error that my "stubForm" variable didn't exist, even though it worked for the "it" blocks before it.
+
+Fix: I moved the "it" statements inside of the "describe" block.
+
+Lessons: I thought there was an error with the "it" statements, in that the variables declared inside a "describe" block were only available to the first handful of "it" blocks. This makes no sense though! The simple answer is that I just typed my statements incorrectly. Look for simple solutions before jumping to something complicated.
+
+***********
+
+Date: July 5, 2016
+
+Symptom: $.ajax request was not being sent out.
+
+Cause: I was getting a "parserror" on my ajax request.
+
+How found: My "success" callback inside my $.ajax was not getting called back. At first, I thought my $.ajax was not even being sent.
+I did a sanity check and used the "error" and "complete" callbacks and found that my $.ajax was returning a "parseerror."
+
+Fix: I had my "dataType" option inside of $.ajax as "json." This was causing the "parseerror" inside my ajax call, because it was expecting a JSON object but got something else. When I ran this API call inside of Postman, it looked like a JSON object to me, but there was probably a missing quotation or something to make it a malformed JSON object. By removing the "dataType" option, the $.ajax functioned as normal.
+
+Lessons: Use the "error" and "complete" callbackcs for $.ajax as debugging tools.
+
+**********
+
+Date: July 8, 2016
+
+Symptom: One of my React component's states was not getting synchronized. 2 DOM elements were shown differently as if the state wasn't consistent.
+
+Cause: I thought that this.setState() was synchronous. However after reading through StackOverflow and the documentation, there is no guarantees that this.setState() will change the state immediately. You can pass a callback as the second argument to it and have code run async once the state has been updated.
+
+How found: Looking at the DOM showed that the state was inconsistent.
+
+Fix: Add a callback as the second argument to this.setState().
+
+Lessons: this.setState() does not guarantee that your state will change right away. The state changes are placed on a queue.
