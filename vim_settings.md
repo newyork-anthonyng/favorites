@@ -1,3 +1,8 @@
+Vim Plugins (clone the plugins into the ~/.vim/bundle folder)
+https://github.com/kien/ctrlp.vim
+https://github.com/pangloss/vim-javascript
+https://github.com/mxw/vim-jsx
+
 syntax enable	" enable syntax processing
 
 " UI Config
@@ -10,13 +15,15 @@ set autoindent	" autoindent lines
 
 " Show invisible characters
 set list
-set list listchars=tab:>-,trail:•,precedes:<,extends:>
+set list listchars=tab:>-,trail:~,precedes:<,extends:>
 
 " Copy to system clipboard
 set clipboard=unnamed
 
 " remap escape to jj
 inoremap jj <esc>
+" disable autoindent for the current file by pressing F8
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
 
 " remap up and down arrows to resize vertically split windows
 nnoremap <up> :vertical resize -5<cr>
@@ -26,4 +33,5 @@ set tabstop=2 " show tabs as 4 spaces
 set shiftwidth=2 " used with the < and > keys to un/indent multiple lines
 
 " set up CtrlP for fuzzy search
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set up JS and JSX syntax highlighting
+set runtimepath^=~/.vim/bundle/ctrlp.vim,~/.vim/bundle/vim-javascript,~/.vim/bundle/vim-jsx
