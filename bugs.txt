@@ -148,6 +148,20 @@ Lessons: this.setState() does not guarantee that your state will change right aw
 
 **********
 
+Date: July 18, 2016
+
+Symptom: An instance of Jenkins was always running on localhost:8080.
+
+Cause: The Jenkins server was never shut down properly.
+
+How found: Running local servers on localhost:8080 would bring up the Jenkins admin page.
+
+Fix: Run "$ lsof -wni tcp:8080". This will show a table of all active processes running on the port provided (in this case, the port is 8080). There will be a column labeled "PID". In the terminal, type "kill -9 PID" where you replace PID with the one provided in the table.
+
+Lessons: I learned how to kill servers!
+
+**********
+
 Date: July 25, 2016
 
 Symptom: I was trying to serve static HTML files for some Express routes; but the files were not found.
