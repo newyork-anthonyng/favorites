@@ -145,3 +145,28 @@ How found: Looking at the DOM showed that the state was inconsistent.
 Fix: Add a callback as the second argument to this.setState().
 
 Lessons: this.setState() does not guarantee that your state will change right away. The state changes are placed on a queue.
+
+**********
+
+Date: July 25, 2016
+
+Symptom: I was trying to serve static HTML files for some Express routes; but the files were not found.
+
+Cause: I was confusing the use of app.use(express.static('/public')) and res.sendFile(path.join(__dirname, '/public')). I thought that by using express.static, I was able to just use the '/public' path to serve my HTML files for my response.
+
+How found: A lot of googling. I had wanted to pull out my Express routes that contained my page views into another file, but was always faced with endless errors, while the Express documentation was lacking in this area.
+
+Fix: My folder set up was like such.
+-server.js
+-public
+  -index.html
+	-about.html
+	-styles.css
+-routes
+  -page.js
+
+By using app.use(express.static('/public')), that meant that inside my static files (like my HTML files), I could just reference my public files with (src="public/styles.css"). Express would look for any static assets served on the "public" root.
+
+Using "public" as the root didn't exactly mean I could use it on the backend (or at least that's what I found after playing around with it). I couldn't just use (res.sendFile(path.join(__dirname + '/public/index.html'));) inside of my routes/page.js file. This would look for a file inside of routes/public, which there is none.
+
+Lessons: To correct this, I had to use the alternate for of path.join(). path.join(__dirname, '../public', 'index.html'). This path would give you the current directory name (./routes), and then go up a folder (./) and then into the public folder (./public). This is exactly where the index.html file is found.
