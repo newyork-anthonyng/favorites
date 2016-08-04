@@ -29,6 +29,9 @@ nnoremap <F8> :setl noai nocin nosi inde=<CR>
 nnoremap <up> :vertical resize -5<cr>
 nnoremap <down> :vertical resize +5<cr>
 
+" remap tab key to go to next window when in split mode
+nnoremap <Tab> <C-w>w
+
 set tabstop=2 " show tabs as 4 spaces
 set shiftwidth=2 " used with the < and > keys to un/indent multiple lines
 
