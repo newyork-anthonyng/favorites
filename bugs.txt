@@ -184,3 +184,12 @@ By using app.use(express.static('/public')), that meant that inside my static fi
 Using "public" as the root didn't exactly mean I could use it on the backend (or at least that's what I found after playing around with it). I couldn't just use (res.sendFile(path.join(__dirname + '/public/index.html'));) inside of my routes/page.js file. This would look for a file inside of routes/public, which there is none.
 
 Lessons: To correct this, I had to use the alternate for of path.join(). path.join(__dirname, '../public', 'index.html'). This path would give you the current directory name (./routes), and then go up a folder (./) and then into the public folder (./public). This is exactly where the index.html file is found.
+
+**********
+
+Date: August 11, 2016
+
+Symptom: When trying to brew install a library, it told me to symlink library. When I tried to symlink the library, it said it was unwritable.
+
+Fix: sudo chown -R $(whoami) /usr/local/lib/...
+The chown command makes the folder writable.
