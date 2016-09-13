@@ -193,3 +193,16 @@ Symptom: When trying to brew install a library, it told me to symlink library. W
 
 Fix: sudo chown -R $(whoami) /usr/local/lib/...
 The chown command makes the folder writable.
+
+**********
+
+Date: September 13, 2016
+
+Symptom: Heroku gives an error that webpack is not found.
+
+Cause: Webpack is not found because it is installed as a devDependency. By default, Heroku does not install any devDependencies so webpack is never installed.
+
+How found: Error was found in Heroku output when pushing code to Heroku.
+
+Fix:
+$ heroku config:set NPM_CONFIG_PRODUCTION=false
