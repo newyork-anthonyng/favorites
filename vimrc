@@ -1,17 +1,32 @@
-Vim Plugins (clone the plugins into the ~/.vim/bundle folder)
-https://github.com/kien/ctrlp.vim
-https://github.com/pangloss/vim-javascript
-https://github.com/mxw/vim-jsx
+" begin: required for vundle
+set nocompatible
+filetype off
 
-syntax enable	" enable syntax processing
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'	" Vim plugin manager
+Plugin 'ctrlpvim/ctrlp.vim'	" Fuzzy search
+Plugin 'pangloss/vim-javascript' " Syntax highlighting for JavaScript
+Plugin 'mxw/vim-jsx' " Syntax highlighting for JSX
+
+call vundle#end()
+filetype plugin indent on
+" end: required for vundle
+" To install all the plugins, type the below into your command line
+" $ vim +PluginInstall +qall
+
 
 " UI Config
+syntax enable	" enable syntax processing
 set number	" show line numbers
 set showcmd	" show command in bottom bar
 set cursorline	" highlight current line
 set wildmenu	" visual autocomplete for command menu
 set hlsearch	" highlight search text
 set autoindent	" autoindent lines
+set nocindent	" turn off C style indent
+set nosmartindent	"turn off smart indent
 
 " Show invisible characters
 set list
@@ -34,7 +49,3 @@ nnoremap <Tab> <C-w>w
 
 set tabstop=2 " show tabs as 4 spaces
 set shiftwidth=2 " used with the < and > keys to un/indent multiple lines
-
-" set up CtrlP for fuzzy search
-" set up JS and JSX syntax highlighting
-set runtimepath^=~/.vim/bundle/ctrlp.vim,~/.vim/bundle/vim-javascript,~/.vim/bundle/vim-jsx
