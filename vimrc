@@ -8,6 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'	" Vim plugin manager
 Plugin 'ctrlpvim/ctrlp.vim'	" Fuzzy search
 Plugin 'pangloss/vim-javascript' " Syntax highlighting for JavaScript
+Plugin 'scrooloose/nerdtree' " Directory navigation
 Plugin 'mxw/vim-jsx' " Syntax highlighting for JSX
 
 call vundle#end()
