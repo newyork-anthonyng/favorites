@@ -12,6 +12,7 @@ Plugin 'pangloss/vim-javascript' " Syntax highlighting for JavaScript
 Plugin 'chemzqm/vim-jsx-improve' " Syntax highlighting for JSX
 Plugin 'srooloose/nerdtree' " File directory
 Plugin 'elzr/vim-json' " Syntax highlighting for JSON
+Plugin 'ElmCast/elm-vim' " Syntax highlighting for Elm
 
 call vundle#end()
 filetype plugin indent on
