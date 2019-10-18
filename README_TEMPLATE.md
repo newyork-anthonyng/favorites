@@ -12,6 +12,14 @@
 
 # REPO_NAME
 
+## Tutorial
+
+## How-to Guide
+
+## Explanation
+
+## Reference
+
 [codecov]: https://codecov.io/gh/newyork-anthonyng/REPO_NAME
 [codecov-badge]: https://img.shields.io/codecov/c/github/newyork-anthonyng/REPO_NAME/master.svg
 [code-climate]: https://codeclimate.com/github/newyork-anthonyng/REPO_NAME/maintainability
