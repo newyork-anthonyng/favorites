@@ -32,3 +32,10 @@ function backup()
   echo Checking out $branch
   git checkout $branch
 }
+
+# User can get branch name with $(gbn)
+# For example, on terminal, `git pull origin $(gbn)` will pull code for current branch
+function gbn() {
+  ref=$(git symbolic-ref HEAD | cut -d'/' -f3)
+  echo $ref
+}
